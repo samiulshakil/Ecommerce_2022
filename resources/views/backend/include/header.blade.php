@@ -38,22 +38,10 @@
                 <button class="close"></button>
             </div>
             <ul class="header-menu nav">
-                <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon fa fa-database"> </i>
-                        Statistics
-                    </a>
-                </li>
-                <li class="btn-group nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon fa fa-edit"></i>
-                        Projects
-                    </a>
-                </li>
                 <li class="dropdown nav-item">
                     <a href="javascript:void(0);" class="nav-link">
                         <i class="nav-link-icon fa fa-cog"></i>
-                        Settings
+                        View Site
                     </a>
                 </li>
             </ul>        </div>
@@ -65,15 +53,16 @@
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                     <img width="42" class="rounded-circle" src="{{asset('/backend/assets/images/avatars/1.jpg')}}" alt="">
-                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                    <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                    <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                                    <div tabindex="-1" class="dropdown-divider"></div>
-                                    <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
+                                    <a href="" tabindex="0" class="dropdown-item">Profile</a>
+                                    <a href="" tabindex="0" class="dropdown-item">Change Password</a>
+                                    <a href="" tabindex="0" class="dropdown-item">Settings</a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                        this.closest('form').submit();" tabindex="0" class="dropdown-item">Log Out</a>
+                                    </form>
                                 </div>
                             </div>
                         </div>

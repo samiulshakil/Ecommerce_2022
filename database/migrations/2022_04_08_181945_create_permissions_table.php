@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('module_id');
-            $table->foreign('module_id')->references('id')->on('modules');
+            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');;
             $table->string('name');
             $table->string('slug')->unique();
             $table->timestamps();

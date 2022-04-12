@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->boolean('deletable')->default(true);
             $table->timestamps();
         });

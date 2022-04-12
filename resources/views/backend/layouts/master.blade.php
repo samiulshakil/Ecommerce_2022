@@ -13,6 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{asset('backend/assets/css/main.css')}}" rel="stylesheet">
+    @stack('css')
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -32,6 +33,14 @@
             <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
     </div>
-<script type="text/javascript" src="{{asset('backend/assets/scripts/main.js')}}"></script>
+    <script type="text/javascript" src="{{asset('backend/assets/scripts/main.js')}}"></script>
+    <script type="text/javascript" src="{{asset('backend/assets/scripts/script.js')}}"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous">
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @stack('js')
 </body>
 </html>

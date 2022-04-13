@@ -21,7 +21,7 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'module_id' => $moduleDashboard->id,
             'name' => 'Access Dashboard',
-            'slug' => 'access-dashboard',
+            'slug' => 'admin.dashboard',
         ]);
 
         $moduleRole = Module::create(['name'=> 'Role Management']);
@@ -29,25 +29,25 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'module_id' => $moduleRole->id,
             'name' => 'Access Role',
-            'slug' => 'access-role',
+            'slug' => 'admin.roles.index',
         ]);
 
         Permission::create([
             'module_id' => $moduleRole->id,
             'name' => 'Create Role',
-            'slug' => 'create-role',
+            'slug' => 'admin.roles.create',
         ]);
 
         Permission::create([
             'module_id' => $moduleRole->id,
             'name' => 'Edit Role',
-            'slug' => 'edit-role',
+            'slug' => 'admin.roles.edit',
         ]);
 
         Permission::create([
             'module_id' => $moduleRole->id,
             'name' => 'Delete Role',
-            'slug' => 'delete-role',
+            'slug' => 'admin.roles.destroy',
         ]);
 
         //User Management
@@ -56,25 +56,25 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'module_id' => $moduleUser->id,
             'name' => 'Access User',
-            'slug' => 'access-user',
+            'slug' => 'admin.users.index',
         ]);
 
         Permission::create([
             'module_id' => $moduleUser->id,
             'name' => 'Create User',
-            'slug' => 'create-user',
+            'slug' => 'admin.users.create',
         ]);
 
         Permission::create([
             'module_id' => $moduleUser->id,
             'name' => 'Edit User',
-            'slug' => 'edit-user',
+            'slug' => 'admin.users.edit',
         ]);
 
         Permission::create([
             'module_id' => $moduleUser->id,
             'name' => 'Delete User',
-            'slug' => 'delete-user',
+            'slug' => 'admin.users.destroy',
         ]);
     }
 }

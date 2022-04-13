@@ -7,6 +7,10 @@ use App\Models\Module;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use Illuminate\Support\Str;
+use Brian2694\Toastr\Facades\Toastr;
+
+
+
 
 class RoleController extends Controller
 {
@@ -50,9 +54,9 @@ class RoleController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
         ])->permissions()->sync($request->input('permissions'),[]);
-
+        Toastr::success('Successfully Role Added', '', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.roles.index');
-    }
+    } 
 
     /**
      * Display the specified resource.
@@ -101,7 +105,7 @@ class RoleController extends Controller
         ]);
 
         $role->permissions()->sync($request->input('permissions', []));
-
+        Toastr::success('Successfully Role Added', '', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.roles.index');
 
 
@@ -119,8 +123,9 @@ class RoleController extends Controller
         
         if($role->deletable == true){
             $role->delete();
+            Toastr::warning('Successfully Role Deleted', '', ["positionClass" => "toast-top-right"]);
         }else{
-
+            Toastr::error('You can not delete system role', '', ["positionClass" => "toast-top-right"]);
         }
         return back();
     }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\backend\RoleController;
+use App\Http\Controllers\Backend\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
             Route::name('admin.')->group(function () {
                 Route::get('/dashboard', DashboardController::class)->name('dashboard');
                 Route::resource('roles', RoleController::class);
+                Route::resource('users', UserController::class);
         });
     });
 });

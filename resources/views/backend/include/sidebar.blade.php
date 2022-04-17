@@ -51,6 +51,12 @@
                         Users
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('admin.backups.index')}}" class="{{Request::is('admin/backups*') ? 'mm-active' : ''}}">
+                        <i class="metismenu-icon pe-7s-back-2"></i>
+                        Backups
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

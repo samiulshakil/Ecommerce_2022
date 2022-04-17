@@ -24,6 +24,7 @@ class PermissionSeeder extends Seeder
             'slug' => 'admin.dashboard',
         ]);
 
+        //Role Management
         $moduleRole = Module::create(['name'=> 'Role Management']);
 
         Permission::create([
@@ -76,5 +77,32 @@ class PermissionSeeder extends Seeder
             'name' => 'Delete User',
             'slug' => 'admin.users.destroy',
         ]);
+
+                //Backup Management
+                $moduleBackups = Module::create(['name'=> 'Backup Management']);
+
+                Permission::create([
+                    'module_id' => $moduleBackups->id,
+                    'name' => 'Access Backup',
+                    'slug' => 'admin.backups.index',
+                ]);
+        
+                Permission::create([
+                    'module_id' => $moduleBackups->id,
+                    'name' => 'Create Backup',
+                    'slug' => 'admin.backups.create',
+                ]);
+        
+                Permission::create([
+                    'module_id' => $moduleBackups->id,
+                    'name' => 'Download Backup',
+                    'slug' => 'admin.backups.download',
+                ]);
+        
+                Permission::create([
+                    'module_id' => $moduleBackups->id,
+                    'name' => 'Delete Backup',
+                    'slug' => 'admin.backups.destroy',
+                ]);
     }
 }

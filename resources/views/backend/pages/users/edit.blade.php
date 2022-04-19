@@ -83,15 +83,8 @@
                           <div class="form-group">
                               <label for="password_confirmation">Confirm Password</label>
                               <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" 
-                              class="form-control @error('password_confirmation') is-invalid @enderror">
+                              class="form-control @error('password') is-invalid @enderror">
                           </div>
-                          @error('password_confirmation')
-                              <p>
-                                  <span class="text-danger" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                  </span>
-                              </p>
-                          @enderror
                         </div>
                     </div>
                 </div>

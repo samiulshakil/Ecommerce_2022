@@ -52,11 +52,11 @@
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="{{asset('/backend/assets/images/avatars/1.jpg')}}" alt="">
+                                    <img width="40" height="40" class="rounded-circle" src="{{Auth::user()->getFirstMediaUrl('avatar')}}" alt="">
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <a href="" tabindex="0" class="dropdown-item">Profile</a>
-                                    <a href="" tabindex="0" class="dropdown-item">Change Password</a>
+                                    <a href="{{route('admin.profile.edit')}}" tabindex="0" class="dropdown-item">Profile</a>
+                                    <a href="{{route('admin.password.edit')}}" tabindex="0" class="dropdown-item">Change Password</a>
                                     <a href="" tabindex="0" class="dropdown-item">Settings</a>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf

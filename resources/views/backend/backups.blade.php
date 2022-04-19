@@ -38,7 +38,7 @@
 
             </div>
         </div>
-        <div class="page-title-actions">
+        {{-- <div class="page-title-actions">
             <button type="button" onclick="event.preventDefault(); 
             document.getElementById('new-backup-form').submit();" class="mr-3 btn btn-primary">
                 <i class="fas fa-plus-circle"></i>
@@ -47,7 +47,7 @@
             <form id="new-backup-form" action="{{route('admin.backups.store')}}" method="POST" class="d-none">
                 @csrf
             </form>
-        </div>  
+        </div>   --}}
     </div>
 </div>            
 

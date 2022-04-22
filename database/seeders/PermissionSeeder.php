@@ -78,31 +78,91 @@ class PermissionSeeder extends Seeder
             'slug' => 'admin.users.destroy',
         ]);
 
-                //Backup Management
-                $moduleBackups = Module::create(['name'=> 'Backup Management']);
+        //Backup Management
+        $moduleBackups = Module::create(['name'=> 'Backup Management']);
 
-                Permission::create([
-                    'module_id' => $moduleBackups->id,
-                    'name' => 'Access Backup',
-                    'slug' => 'admin.backups.index',
-                ]);
-        
-                Permission::create([
-                    'module_id' => $moduleBackups->id,
-                    'name' => 'Create Backup',
-                    'slug' => 'admin.backups.create',
-                ]);
-        
-                Permission::create([
-                    'module_id' => $moduleBackups->id,
-                    'name' => 'Download Backup',
-                    'slug' => 'admin.backups.download',
-                ]);
-        
-                Permission::create([
-                    'module_id' => $moduleBackups->id,
-                    'name' => 'Delete Backup',
-                    'slug' => 'admin.backups.destroy',
-                ]);
+        Permission::create([
+            'module_id' => $moduleBackups->id,
+            'name' => 'Access Backup',
+            'slug' => 'admin.backups.index',
+        ]);
+
+        Permission::create([
+            'module_id' => $moduleBackups->id,
+            'name' => 'Create Backup',
+            'slug' => 'admin.backups.create',
+        ]);
+
+        Permission::create([
+            'module_id' => $moduleBackups->id,
+            'name' => 'Download Backup',
+            'slug' => 'admin.backups.download',
+        ]);
+
+        Permission::create([
+            'module_id' => $moduleBackups->id,
+            'name' => 'Delete Backup',
+            'slug' => 'admin.backups.destroy',
+        ]);
+
+        //Page Management
+        $modulePages = Module::create(['name'=> 'Page Management']);
+
+        Permission::create([
+            'module_id' => $modulePages->id,
+            'name' => 'Access Page',
+            'slug' => 'admin.pages.index',
+        ]);
+
+        Permission::create([
+            'module_id' => $modulePages->id,
+            'name' => 'Create Page',
+            'slug' => 'admin.pages.create',
+        ]);
+
+        Permission::create([
+            'module_id' => $modulePages->id,
+            'name' => 'Edit Page',
+            'slug' => 'admin.pages.edit',
+        ]);
+
+        Permission::create([
+            'module_id' => $modulePages->id,
+            'name' => 'Delete Page',
+            'slug' => 'admin.pages.destroy',
+        ]);
+
+         //Menu Management
+         $moduleMenu = Module::create(['name'=> 'Menu Management']);
+
+         Permission::create([
+             'module_id' => $moduleMenu->id,
+             'name' => 'Access Menu',
+             'slug' => 'admin.menus.index',
+         ]);
+
+         Permission::create([
+             'module_id' => $moduleMenu->id,
+             'name' => 'Access Menu Builder',
+             'slug' => 'admin.menus.builder',
+         ]);
+ 
+         Permission::create([
+             'module_id' => $moduleMenu->id,
+             'name' => 'Create Menu',
+             'slug' => 'admin.menus.create',
+         ]); 
+ 
+         Permission::create([
+             'module_id' => $moduleMenu->id,
+             'name' => 'Edit Menu',
+             'slug' => 'admin.menus.edit',
+         ]);
+ 
+         Permission::create([
+             'module_id' => $moduleMenu->id,
+             'name' => 'Delete Menu',
+             'slug' => 'admin.menus.destroy',
+         ]);
     }
 }

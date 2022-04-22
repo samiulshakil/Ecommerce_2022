@@ -138,7 +138,7 @@ class UserController extends Controller
         Gate::authorize('admin.users.destroy');
         $user = User::find($id);
         $user->delete();
-        Toastr::warning('Successfully User Deleted', '', ["positionClass" => "toast-top-right"]);
+        Toastr::success('Successfully User Deleted', '', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

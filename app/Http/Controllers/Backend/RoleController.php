@@ -111,7 +111,7 @@ class RoleController extends Controller
         ]);
 
         $role->permissions()->sync($request->input('permissions'));
-        Toastr::success('Successfully Role Added', '', ["positionClass" => "toast-top-right"]);
+        Toastr::success('Successfully Role Updated', '', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.roles.index');
 
 
@@ -130,9 +130,9 @@ class RoleController extends Controller
         
         if($role->deletable == true){
             $role->delete();
-            Toastr::warning('Successfully Role Deleted', '', ["positionClass" => "toast-top-right"]);
+            Toastr::success('Successfully Role Deleted', '', ["positionClass" => "toast-top-right"]);
         }else{
-            Toastr::error('You can not delete system role', '', ["positionClass" => "toast-top-right"]);
+            Toastr::warning('You can not delete system role', '', ["positionClass" => "toast-top-right"]);
         }
         return back();
     }

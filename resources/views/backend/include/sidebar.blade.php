@@ -57,6 +57,19 @@
                         Backups
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('admin.pages.index')}}" class="{{Request::is('admin/pages*') ? 'mm-active' : ''}}">
+                        <i class="metismenu-icon pe-7s-news-paper"></i>
+                        Pages
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">Menu Section</li>
+                <li>
+                    <a href="{{route('admin.menus.index')}}" class="{{Request::is('admin/menus*') ? 'mm-active' : ''}}">
+                        <i class="metismenu-icon pe-7s-menu"></i>
+                        Menus
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

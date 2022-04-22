@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\BackupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\MenuBuilderController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\PasswordController;
 use App\Http\Controllers\backend\RoleController;
@@ -54,10 +55,28 @@ Route::middleware(['auth'])->group(function () {
 
                 //Menus route
                 Route::resource('menus', MenuController::class)->except(['show']);
+                                
+        });
+    });
+});
 
-                //Menus Items route
-                Route::resource('menuitems', MenuItemController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('admin/menus/{id}')->group(function () {
+            Route::name('admin.menus.')->group(function () {
+                
+                Route::get('builder', [MenuBuilderController::class, 'index'])->name('builder');
 
+                //Menu Items Group
+                Route::prefix('item')->group(function (){
+                    Route::name('item.')->group(function (){
+                        //Menus Items route
+                        Route::get('create', [MenuBuilderController::class, 'itemCreate'])->name('create');
+                        Route::post('store', [MenuBuilderController::class, 'itemStore'])->name('store');
+                        Route::get('{itemId}/edit', [MenuBuilderController::class, 'itemEdit'])->name('edit');
+                        Route::post('{itemId}/update', [MenuBuilderController::class, 'itemUpdate'])->name('update');
+                        Route::delete('{itemId}/delete', [MenuBuilderController::class, 'itemDestroy'])->name('destroy');
+                    });
+                });
                                 
         });
     });

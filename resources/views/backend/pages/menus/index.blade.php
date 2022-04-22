@@ -77,9 +77,9 @@
                                     {{ $menu->description }}
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('admin.menus.edit', $menu->id)}}" class="btn btn-success btn-sm">
+                                    <a href="{{route('admin.menus.builder', $menu->id)}}" class="btn btn-success btn-sm">
                                         <i class="fas fa-list-ul"></i>
-                                        <span>Edit</span>
+                                        <span>Builder</span>
                                     </a>
 
                                     <a href="{{route('admin.menus.edit', $menu->id)}}" class="btn btn-info btn-sm">

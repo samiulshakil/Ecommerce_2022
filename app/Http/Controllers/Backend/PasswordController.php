@@ -24,7 +24,7 @@ class PasswordController extends Controller
         $user = User::find(Auth::id());
 
         $hashedPassword = $user->password;
-        if (Hash::check($request->current_password, $hashedPassword)) {
+        if (Hash::check($request->current_password, $hashedPassword)) { 
             if (!Hash::check($request->password, $hashedPassword)) {
                 $user->update([
                     'password' => Hash::make($request->password)

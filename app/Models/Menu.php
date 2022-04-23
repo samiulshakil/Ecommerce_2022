@@ -12,7 +12,14 @@ class Menu extends Model
 
     protected $guarded = ['id'];
 
-    public function menuItems(){
-        return $this->hasMany(MenuItem::class);
+    /**
+     *  Menu has many  menu items
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menuItems()
+    {
+        return $this->hasMany(MenuItem::class)
+            ->doesntHave('parent')
+            ->orderBy('order','asc');
     }
 }

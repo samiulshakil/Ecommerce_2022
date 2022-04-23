@@ -63,8 +63,8 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::prefix('admin/menus/{id}')->group(function () {
             Route::name('admin.menus.')->group(function () {
-                
-                Route::get('builder', [MenuBuilderController::class, 'index'])->name('builder');
+                 Route::get('builder', [MenuBuilderController::class, 'index'])->name('builder');
+                 Route::post('order', [MenuBuilderController::class, 'order'])->name('order');
 
                 //Menu Items Group
                 Route::prefix('item')->group(function (){

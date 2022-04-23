@@ -67,10 +67,10 @@ class MenuBuilderController extends Controller
         return redirect()->route('admin.menus.builder',$menu->id);
     }
 
-    public function itemEdit($menuId, $itemId){
+    public function itemEdit($id, $itemId){
         Gate::authorize('admin.menus.edit');
-        $menu = Menu::findOrFail($menuId);
-        $menuItem = $menu->menuItems()->findOrFail($itemId);
+        $menu = Menu::findOrFail($id);
+        $menuItem = MenuItem::where('menu_id', $menu->id)->findOrFail($itemId);
         return view('backend.pages.menus.item.edit',compact('menu','menuItem'));
     }
 
@@ -85,9 +85,7 @@ class MenuBuilderController extends Controller
             'icon_class' => 'nullable|string',
         ]);
         $menu = Menu::findOrFail($id);
-        $menuItem = $menu->menuItems()->findOrFail($itemId);
-
-        $menuItem->update([
+        $menuItem = MenuItem::where('menu_id', $menu->id)->findOrFail($itemId)->update([
             'menu_id' => $menu->id,
             'type' => $request->type,
             'title' => $request->title,

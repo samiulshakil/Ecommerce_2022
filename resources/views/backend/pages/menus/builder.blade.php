@@ -92,6 +92,7 @@
                                 <form id="delete-form-{{$item->id}}" method="post" 
                                     action="{{ route('admin.menus.item.destroy', ['id' => $menu->id, 'itemId' => $item->id]) }}">
                                     @csrf
+                                    @method('DELETE')
                                 </form>
                             </div>
                             <div class="dd-handle">
@@ -107,7 +108,7 @@
                                 @foreach ($item->childs as $child)
                                 <li class="dd-item" data-id="{{$child->id}}">
                                     <div class="pull-right item_actions">
-                                        <a href="{{route('admin.menus.item.edit', ['id' => $child->id, 'itemId' => $child->id])}}" class="btn btn-info btn-sm">
+                                        <a href="{{route('admin.menus.item.edit', ['id' => $menu->id, 'itemId' => $child->id])}}" class="btn btn-info btn-sm">
                                             <i class="fas fa-edit"></i>
                                             <span>Edit</span>
                                         </a>
@@ -118,6 +119,7 @@
                                         <form id="delete-form-{{$child->id}}" method="post" 
                                             action="{{ route('admin.menus.item.destroy', ['id' => $menu->id, 'itemId' => $child->id]) }}">
                                             @csrf
+                                            @method('DELETE')
                                         </form>
                                     </div>
                                     <div class="dd-handle">

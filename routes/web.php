@@ -12,7 +12,7 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\MenuItemController;
-
+use App\Http\Controllers\Backend\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+//Menu Route Group
 Route::middleware(['auth'])->group(function () {
     Route::prefix('admin/menus/{id}')->group(function () {
             Route::name('admin.menus.')->group(function () {
@@ -77,6 +78,20 @@ Route::middleware(['auth'])->group(function () {
                         Route::delete('{itemId}/delete', [MenuBuilderController::class, 'itemDestroy'])->name('destroy');
                     });
                 });
+                                
+        });
+    });
+});
+
+//Route for Settings
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('admin/settings')->group(function () {
+            Route::name('admin.settings.')->group(function () {
+                 Route::get('general', [SettingController::class, 'general'])->name('general');
+                 Route::put('general', [SettingController::class, 'generalUpdate'])->name('general.update');
+
+                 Route::get('mail', [SettingController::class, 'mail'])->name('mail');
+                 Route::put('mail', [SettingController::class, 'mailUpdate'])->name('mail.update');
                                 
         });
     });

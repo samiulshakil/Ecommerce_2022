@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e51e008810a46a97c1bfd96e5c31a8df",
+    "content-hash": "28fabc83bad65768ba76308475069b77",
     "packages": [
         {
             "name": "appslabke/lara-izitoast",
@@ -5928,6 +5928,75 @@
                 }
             ],
             "time": "2022-03-02T12:58:14+00:00"
+        },
+        {
+            "name": "thanhlyvan/laravel-env-set-command",
+            "version": "v9.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thanhlyvan/laravel-env-set-command.git",
+                "reference": "b1a1e363d482de2f6785a9f6bdee223cf13f1d21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thanhlyvan/laravel-env-set-command/zipball/b1a1e363d482de2f6785a9f6bdee223cf13f1d21",
+                "reference": "b1a1e363d482de2f6785a9f6bdee223cf13f1d21",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^7.0|^8.0|^9.0",
+                "illuminate/support": "^7.0|^8.0|^9.0",
+                "php": "^8.0.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5|^8.0|^9.0",
+                "roave/security-advisories": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ImLiam\\EnvironmentSetCommand\\EnvironmentSetCommandServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ImLiam\\EnvironmentSetCommand\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Liam Hammett",
+                    "email": "liam@liamhammett.com",
+                    "homepage": "https://liamhammett.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Set a .env file variable from the command line",
+            "homepage": "https://github.com/imliam/laravel-env-set-command",
+            "keywords": [
+                "artisan",
+                "env",
+                "environment",
+                "imliam",
+                "laravel-env-set-command",
+                "variables"
+            ],
+            "support": {
+                "source": "https://github.com/thanhlyvan/laravel-env-set-command/tree/v9.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/imliam",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-03-18T08:56:10+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

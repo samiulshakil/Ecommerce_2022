@@ -1,0 +1,5 @@
+<div class="list-group">
+    <a href="{{route('admin.settings.general')}}" class="list-group-item list-group-item-action  {{ Route::is('admin.settings.general') ? 'active' : ''  }}">General</a>
+
+    <a href="{{route('admin.settings.mail')}}" class="list-group-item list-group-item-action {{ Route::is('admin.settings.mail') ? 'active' : ''  }}">Mail</a>
+</div>

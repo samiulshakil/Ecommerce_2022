@@ -164,5 +164,14 @@ class PermissionSeeder extends Seeder
              'name' => 'Delete Menu',
              'slug' => 'admin.menus.destroy',
          ]);
+
+          //Menu Management
+          $moduleSetting = Module::create(['name'=> 'Setting Management']);
+
+          Permission::create([
+            'module_id' => $moduleSetting->id,
+            'name' => 'Access Setting',
+            'slug' => 'admin.setting.index',
+        ]);
     }
 }

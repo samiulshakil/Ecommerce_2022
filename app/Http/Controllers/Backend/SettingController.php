@@ -6,18 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
     public function general(){
-        Gate::authorize('admin.setting.index');
+        Gate::authorize('admin.settings.index');
         return view('backend.pages.settings.general');
     }
 
     public function generalUpdate(Request $request){
-        Gate::authorize('admin.setting.index');
+        Gate::authorize('admin.settings.index');
         $request->validate([
             'site_title' => 'required|string|min:2|max:255',
             'site_description' => 'nullable|string|min:2|max:255',
@@ -34,12 +34,12 @@ class SettingController extends Controller
     }
 
     public function mail(){
-        Gate::authorize('admin.setting.index');
+        Gate::authorize('admin.settings.index');
         return view('backend.pages.settings.mail');
     }
 
     public function mailUpdate(Request $request){
-        Gate::authorize('admin.setting.index');
+        Gate::authorize('admin.settings.index');
         $request->validate([
             'mail_mailer' => 'string|max:255',
             'mail_host' => 'nullable|string|max:255',
@@ -68,12 +68,49 @@ class SettingController extends Controller
             'MAIL_PASSWORD'   => $request->mail_password,
             'MAIL_ENCRYPTION' => $request->mail_encryption,
             'MAIL_FROM_ADDRESS' => $request->mail_from_address,
-            'MAIL_FROM_NAME'  => $request->mail_from_name
+            'APP_NAME'  => $request->mail_from_name
         ]);
         
-        Toastr::success('Successfully General Settings Updated', '', ["positionClass" => "toast-top-right"]);
+        Toastr::success('Successfully Mail Settings Updated', '', ["positionClass" => "toast-top-right"]);
         return back();
     }
+
+    public function appearance(){
+        Gate::authorize('admin.settings.index');
+        return view('backend.pages.settings.appearance');
+    }
+
+    public function appearanceUpdate(Request $request){
+        Gate::authorize('admin.settings.index');
+        $request->validate([
+            'site_logo' => 'nullable|image',
+            'site_favicon' => 'nullable|image',
+        ]);
+
+        if($request->hasFile('site_logo')){
+            Setting::updateOrCreate(
+                ['name' => 'site_logo'], 
+                [
+                    'value' => Storage::disk('public')->put('logos', $request->file('site_logo'))
+                ]
+            );
+        }
+
+        
+        if($request->hasFile('site_favicon')){
+            Setting::updateOrCreate(
+                ['name' => 'site_favicon'], 
+                [
+                    'value' => Storage::disk('public')->put('logos', $request->file('site_favicon'))
+                ]
+            );
+        }
+
+        Toastr::success('Successfully Appearance Updated', '', ["positionClass" => "toast-top-right"]);
+        return back();
+
+    }
+
 
     protected function changeEnvData(array $data)
     {

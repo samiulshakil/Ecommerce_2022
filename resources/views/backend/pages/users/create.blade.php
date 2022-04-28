@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Roles')
+@section('title', 'Create Users')
 
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -110,7 +110,7 @@
 
                         <div class="form-group">
                             <label for="avatar">Select Avatar</label>
-                            <input type="file" class="dropify form-control" name="avatar" id="avatar" required>
+                            <input type="file" class="dropify form-control @error('avatar') is-invalid @enderror" name="avatar" id="avatar" required>
                         </div>
                         @error('avatar')
                         <p>

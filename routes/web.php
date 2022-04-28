@@ -90,6 +90,9 @@ Route::middleware(['auth'])->group(function () {
                  Route::get('general', [SettingController::class, 'general'])->name('general');
                  Route::put('general', [SettingController::class, 'generalUpdate'])->name('general.update');
 
+                 Route::get('appearance', [SettingController::class, 'appearance'])->name('appearance');
+                 Route::put('appearance', [SettingController::class, 'appearanceUpdate'])->name('appearance.update');
+
                  Route::get('mail', [SettingController::class, 'mail'])->name('mail');
                  Route::put('mail', [SettingController::class, 'mailUpdate'])->name('mail.update');
                                 

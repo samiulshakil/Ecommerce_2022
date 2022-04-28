@@ -171,7 +171,7 @@ class PermissionSeeder extends Seeder
           Permission::create([
             'module_id' => $moduleSetting->id,
             'name' => 'Access Setting',
-            'slug' => 'admin.setting.index',
+            'slug' => 'admin.settings.index',
         ]);
     }
 }

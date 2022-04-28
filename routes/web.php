@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Backend\BackupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
@@ -11,7 +12,6 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Backend\MenuController;
-use App\Http\Controllers\Backend\MenuItemController;
 use App\Http\Controllers\Backend\SettingController;
 
 /*
@@ -28,6 +28,10 @@ use App\Http\Controllers\Backend\SettingController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//laravel socialite
+Route::get('/login/{provider}', [AuthenticatedSessionController::class, 'redirectToProvider'])->name('login.provider');
+Route::get('/login/{provider}/callback', [AuthenticatedSessionController::class, 'handleProviderCallback'])->name('login.callback');
 
 
 Route::middleware(['auth'])->group(function () {

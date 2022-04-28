@@ -73,41 +73,50 @@
         </div>    </div>
 </div>            
 <div class="row">
-    <div class="col-md-6 col-xl-4">
+    <div class="col-md-6 col-xl-3">
         <div class="card mb-3 widget-content bg-midnight-bloom">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">Total Orders</div>
-                    <div class="widget-subheading">Last year expenses</div>
+                    <div class="widget-heading">Total Users</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>1896</span></div>
+                    <div class="widget-numbers text-white"><span>{{$users_count}}</span></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-4">
+    <div class="col-md-6 col-xl-3">
         <div class="card mb-3 widget-content bg-arielle-smile">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">Clients</div>
-                    <div class="widget-subheading">Total Clients Profit</div>
+                    <div class="widget-heading">Total Roles</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>$ 568</span></div>
+                    <div class="widget-numbers text-white"><span>{{$roles}}</span></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-4">
+    <div class="col-md-6 col-xl-3">
         <div class="card mb-3 widget-content bg-grow-early">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">Followers</div>
-                    <div class="widget-subheading">People Interested</div>
+                    <div class="widget-heading">Total Pages</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>46%</span></div>
+                    <div class="widget-numbers text-white"><span>{{$pages}}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card mb-3 widget-content bg-arielle-smile">
+            <div class="widget-content-wrapper text-white">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Total Menu</div>
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-white"><span>{{$menus}}</span></div>
                 </div>
             </div>
         </div>
@@ -143,117 +152,63 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th>Name</th>
-                        <th class="text-center">City</th>
-                        <th class="text-center">Status</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Joined At: </th>
                         <th class="text-center">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach ($users as $key => $user)
                     <tr>
-                        <td class="text-center text-muted">#345</td>
+                        <td class="text-center text-muted">{{$key + 1}}</td>
                         <td>
                             <div class="widget-content p-0">
                                 <div class="widget-content-wrapper">
                                     <div class="widget-content-left mr-3">
                                         <div class="widget-content-left">
-                                            <img width="40" class="rounded-circle" src="{{asset('backend/assets/images/avatars/4.jpg')}}" alt="">
+                                            <img width="40" class="rounded-circle" src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar','thumb') : config('app.placeholder').'160' }}" alt="">
                                         </div>
                                     </div>
                                     <div class="widget-content-left flex2">
-                                        <div class="widget-heading">John Doe</div>
-                                        <div class="widget-subheading opacity-7">Web Developer</div>
+                                        <div class="widget-heading">{{$user->name}}</div>
+                                        <div class="widget-subheading opacity-7">{{$user->role->name}}</div>
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        <td class="text-center">Madrid</td>
+                        <td class="text-center">{{$user->email}}</td>
+                        <td class="text-center">{{$user->updated_at->diffForHumans()}}</td>
+                        @if ($user->status == 1)
+                            <td class="text-center">
+                                <div class="badge badge-primary">Active</div>
+                            </td>
+                        @else
+                            <td class="text-center">
+                                <div class="badge badge-warning">Pending</div>
+                            </td>                                          
+                        @endif
                         <td class="text-center">
-                            <div class="badge badge-warning">Pending</div>
-                        </td>
-                        <td class="text-center">
-                            <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                            <a class="btn btn-success btn-sm" href="{{ route('admin.users.show',$user->id) }}"><i
+                                class="fas fa-eye"></i>
+                                <span>Show</span>
+                            </a>
+                            <a href="{{route('admin.users.edit', $user->id)}}" class="btn btn-info btn-sm">
+                                <i class="fas fa-edit"></i>
+                                <span>Edit</span>
+                            </a>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{$user->id}})">
+                                <i class="fas fa-trash-alt"></i>
+                                <span>Delete</span>
+                            </button>
+                            <form id="delete-form-{{$user->id}}" method="post" action="{{ route('admin.users.destroy', $user->id) }}">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="text-center text-muted">#347</td>
-                        <td>
-                            <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left mr-3">
-                                        <div class="widget-content-left">
-                                            <img width="40" class="rounded-circle" src="{{asset('backend/assets/images/avatars/3.jpg"')}} alt="">
-                                        </div>
-                                    </div>
-                                    <div class="widget-content-left flex2">
-                                        <div class="widget-heading">Ruben Tillman</div>
-                                        <div class="widget-subheading opacity-7">Etiam sit amet orci eget</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center">Berlin</td>
-                        <td class="text-center">
-                            <div class="badge badge-success">Completed</div>
-                        </td>
-                        <td class="text-center">
-                            <button type="button" id="PopoverCustomT-2" class="btn btn-primary btn-sm">Details</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center text-muted">#321</td>
-                        <td>
-                            <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left mr-3">
-                                        <div class="widget-content-left">
-                                            <img width="40" class="rounded-circle" src="{{asset('backend/assets/images/avatars/2.jpg')}}" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="widget-content-left flex2">
-                                        <div class="widget-heading">Elliot Huber</div>
-                                        <div class="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center">London</td>
-                        <td class="text-center">
-                            <div class="badge badge-danger">In Progress</div>
-                        </td>
-                        <td class="text-center">
-                            <button type="button" id="PopoverCustomT-3" class="btn btn-primary btn-sm">Details</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center text-muted">#55</td>
-                        <td>
-                            <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left mr-3">
-                                        <div class="widget-content-left">
-                                            <img width="40" class="rounded-circle" src="{{asset('backend/assets/images/avatars/1.jpg')}}" alt=""></div>
-                                    </div>
-                                    <div class="widget-content-left flex2">
-                                        <div class="widget-heading">Vinnie Wagstaff</div>
-                                        <div class="widget-subheading opacity-7">UI Designer</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center">Amsterdam</td>
-                        <td class="text-center">
-                            <div class="badge badge-info">On Hold</div>
-                        </td>
-                        <td class="text-center">
-                            <button type="button" id="PopoverCustomT-4" class="btn btn-primary btn-sm">Details</button>
-                        </td>
-                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
-            </div>
-            <div class="d-block text-center card-footer">
-                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                <button class="btn-wide btn btn-success">Save</button>
             </div>
         </div>
     </div>
